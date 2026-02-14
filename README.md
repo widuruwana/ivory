@@ -1,4 +1,4 @@
-# 🌿 Ivory (v1.0.0)
+# Ivory (v1.0.0)
 
 **Ivory** is a Turing-complete, esoteric programming language (esolang) and Ahead-of-Time (AOT) compiler suite. Originally conceived as a romantic gesture for Valentine's Day 2026, Ivory reimagines the classic tape-memory computational model by introducing a hybrid Tape/Stack architecture, temporal constraints, and hardware entropy through a lexicon of devotion.
 
@@ -109,3 +109,4 @@ The repository includes `poem.ivy`, a source file initially generated via a Pyth
 
 
 **Date: February 14, 2026.**
+
