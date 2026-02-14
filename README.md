@@ -2,17 +2,17 @@
 
 **Ivory** is a Turing-complete, esoteric programming language (esolang) and Ahead-of-Time (AOT) compiler suite. Originally conceived as a romantic gesture for Valentine's Day 2026, Ivory reimagines the classic tape-memory computational model by introducing a hybrid Tape/Stack architecture, temporal constraints, and hardware entropy through a lexicon of devotion.
 
-## 📖 Philosophy
+## Philosophy
 Programs in Ivory are designed to read like stream-of-consciousness prose or avant-garde poetry. Unlike traditional languages that prioritize brevity and execution speed, Ivory enforces the **"Whisper Constraint"**—a hardcoded 50ms thread delay on standard output—ensuring a deliberate, human pace for every character printed to the terminal.
 
-## 🛠 Architecture
+## Architecture
 Ivory utilizes a **Single-pass Ahead-of-Time (AOT) Transpiler** architecture.
 
 * **Frontend**: The `ivoryc` compiler lexes `.ivy` source files. Unrecognized tokens are intentionally ignored, allowing for the inclusion of natural language comments directly within the logical flow.
 * **Intermediate Representation (IR)**: Ivory code is transpiled into a temporary C++ representation of a Hybrid Virtual Machine (featuring a 30,000-cell primary tape and an infinite LIFO memory stack).
 * **Backend**: The compiler forks a system process, invoking the local GCC toolchain (`g++`) to perform high-level optimizations (`-O3`) and link the IR into a standalone, native machine-code binary (ELF for Linux, PE for Windows).
 
-## ⌨️ Instruction Set
+## Instruction Set
 Ivory extends standard Trivial Brainfuck Substitution (TBS) by implementing 19 distinct opcodes, organized into logical sub-systems:
 
 ### 1. Core Turing Machine Operations
@@ -58,7 +58,7 @@ Ivory extends standard Trivial Brainfuck Substitution (TBS) by implementing 19 d
 | `wonder` | `rand()` | Hardware entropy injection (assigns a random 8-bit integer). |
 | `fade` | `exit(0)` | Graceful process termination / hardware interrupt. |
 
-## 🌍 Hello, World!
+## Hello, World!
 
 Below is a standard "Hello, World!" program. 
 
@@ -78,7 +78,7 @@ forget passion passion passion adore adore adore whisper
 fade
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 * A C++ compiler (GCC/MinGW recommended) installed in your system PATH.
@@ -100,11 +100,12 @@ To compile an Ivory source file into a native executable:
 ./ivoryc script.ivy
 ```
 
-## 📜 Example: The Valentine Payload
+## Example: The Valentine Payload
 The repository includes `poem.ivy`, a source file initially generated via a Python-based ASCII-offset calculator and heavily augmented with Ivory's temporal opcodes (`breathe`, `clear`). When compiled and executed, it outputs a multi-line message dynamically, demonstrating the language's capacity for complex string manipulation, thread blocking, and memory-tape arithmetic.
 
 **Author: Kavindu Widyarathne.**
 
 **Dedicated to: My beautiful girlfriend.**
+
 
 **Date: February 14, 2026.**
