@@ -1,0 +1,56 @@
+Setup the environment
+clear
+
+Set the loop counter in Cell zero to fifty using bulk arithmetic
+passion passion passion passion passion
+
+Initialize A in Cell one to zero
+hold forget
+
+Initialize B in Cell two to one
+hold forget adore
+
+Initialize Temp in Cell three to zero
+hold forget
+
+Return to Cell zero to start the main loop
+release release release
+
+promise
+    Move to Cell one and print the current Fibonacci number natively
+    hold confess
+
+    Take a dramatic one second pause
+    breathe
+
+    Shift A into Temp
+    promise
+        miss
+        hold hold adore
+        release release
+    always
+
+    Shift B into both A and Temp
+    hold
+    promise
+        miss
+        release adore
+        hold hold adore
+        release
+    always
+
+    Shift Temp back into B
+    hold
+    promise
+        miss
+        release adore
+        hold
+    always
+
+    Return pointer to Cell zero and decrement the loop counter
+    release release release
+    miss
+always
+
+Terminate the process gracefully
+fade
