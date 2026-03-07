@@ -6,7 +6,7 @@
 Programs in Ivory are designed to read like stream-of-consciousness prose or avant-garde poetry. Unlike traditional languages that prioritize brevity and execution speed, Ivory enforces the **"Whisper Constraint"**—a hardcoded 50ms thread delay on standard output—ensuring a deliberate, human pace for every character printed to the terminal.
 
 ## Architecture
-Ivory utilizes a **Single-pass Ahead-of-Time (AOT) Transpiler** architecture.
+Ivory uses a Single-pass Ahead-of-Time (AOT) Transpiler architecture.
 
 * **Frontend**: The `ivoryc` compiler lexes `.ivy` source files. Unrecognized tokens are intentionally ignored, allowing natural-language comments to be included directly within the logical flow.
 * **Intermediate Representation (IR)**: Ivory code is transpiled into a temporary C++ representation of a 64-bit Hybrid Virtual Machine. To achieve a mathematically Turing-complete, bi-directionally infinite memory tape, the VM utilizes a Sparse Memory Architecture (an O(1) dynamically allocated Hash Map), paired with an infinitely expanding LIFO stack.
@@ -55,7 +55,7 @@ Ivory extends standard Trivial Brainfuck Substitution (TBS) by implementing 19 d
 | Keyword | Action | Description |
 | :--- | :--- | :--- |
 | `destiny` | `p = tape[p]` | Absolute pointer dereferencing (teleports pointer to address). |
-| `wonder` | `rand()` | Hardware entropy injection (assigns a random 8-bit integer). |
+| `wonder` | `rng()` | Hardware entropy injection (assigns a random 64-bit integer using Mersenne Twister). |
 | `fade` | `exit(0)` | Graceful process termination / hardware interrupt. |
 
 ## Hello, World!
@@ -109,6 +109,7 @@ The repository includes `poem.ivy`, a source file initially generated via a Pyth
 
 
 **Date: February 14, 2026.**
+
 
 
 
