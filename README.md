@@ -77,6 +77,52 @@ miss miss miss miss miss miss miss whisper
 forget passion passion passion adore adore adore whisper
 fade
 ```
+## More Example Programs
+
+While Ivory can be used for simple text generation, its 64-bit hybrid architecture allows for highly complex logic and hardware interaction.
+
+### The Fibonacci Sequence
+This program calculates and prints the first 50 numbers of the Fibonacci sequence. It utilizes the `confess` opcode to natively print the 64-bit integers and the `breathe` opcode to introduce a deliberate one-second pause between calculations.
+
+```text
+clear
+
+passion passion passion passion passion
+hold forget
+hold forget adore
+hold forget
+release release release
+
+promise
+    hold confess
+    breathe
+
+    promise
+        miss
+        hold hold adore
+        release release
+    always
+
+    hold
+    promise
+        miss
+        release adore
+        hold hold adore
+        release
+    always
+
+    hold
+    promise
+        miss
+        release adore
+        hold
+    always
+
+    release release release
+    miss
+always
+fade
+```
 
 ## Getting Started
 
@@ -109,6 +155,7 @@ The repository includes `poem.ivy`, a source file initially generated via a Pyth
 
 
 **Date: February 14, 2026.**
+
 
 
 
