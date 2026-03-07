@@ -81,6 +81,18 @@ fade
 
 While Ivory can be used for simple text generation, its 64-bit hybrid architecture allows for highly complex logic and hardware interaction.
 
+### The Cat Program (Infinite Echo)
+The Cat program is the universal I/O test for esoteric languages. It continuously reads a single character from standard input and echoes it to standard output. In Ivory, the hardcoded 50ms `whisper` delay turns any user input into a slow, deliberate echo.
+
+```text
+listen
+promise
+    whisper
+    listen
+always
+fade
+```
+
 ### The Fibonacci Sequence
 This program calculates and prints the first 50 numbers of the Fibonacci sequence. It utilizes the `confess` opcode to natively print the 64-bit integers and the `breathe` opcode to introduce a deliberate one-second pause between calculations.
 
@@ -155,6 +167,7 @@ The repository includes `poem.ivy`, a source file initially generated via a Pyth
 
 
 **Date: February 14, 2026.**
+
 
 
 
