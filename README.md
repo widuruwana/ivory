@@ -9,7 +9,7 @@ Programs in Ivory are designed to read like stream-of-consciousness prose or ava
 Ivory utilizes a **Single-pass Ahead-of-Time (AOT) Transpiler** architecture.
 
 * **Frontend**: The `ivoryc` compiler lexes `.ivy` source files. Unrecognized tokens are intentionally ignored, allowing for the inclusion of natural language comments directly within the logical flow.
-* **Intermediate Representation (IR)**: Ivory code is transpiled into a temporary C++ representation of a Hybrid Virtual Machine (featuring a 30,000-cell primary tape and an infinite LIFO memory stack).
+* **Intermediate Representation (IR)**: Ivory code is transpiled into a temporary C++ representation of a 64-bit Hybrid Virtual Machine. To achieve a mathematically Turing-complete, bi-directionally infinite memory tape, the VM utilizes a Sparse Memory Architecture (an O(1) dynamically allocated Hash Map), paired with an infinitely expanding LIFO stack.
 * **Backend**: The compiler forks a system process, invoking the local GCC toolchain (`g++`) to perform high-level optimizations (`-O3`) and link the IR into a standalone, native machine-code binary (ELF for Linux, PE for Windows).
 
 ## Instruction Set
@@ -49,7 +49,7 @@ Ivory extends standard Trivial Brainfuck Substitution (TBS) by implementing 19 d
 | `passion` | `+= 10` | Add 10 to the current memory cell (Bulk Arithmetic). |
 | `heartbreak`| `-= 10` | Subtract 10 from the current memory cell (Bulk Arithmetic). |
 | `forget` | `= 0` | Instantly zero out the current memory cell (State Reset). |
-| `confess` | `print(int)`| Output the raw integer value of the current cell for debugging. |
+| `confess` | `print(val)`| Output the raw 64-bit integer value of the current cell for debugging. |
 
 ### 6. Architectural Power Features
 | Keyword | Action | Description |
@@ -109,4 +109,5 @@ The repository includes `poem.ivy`, a source file initially generated via a Pyth
 
 
 **Date: February 14, 2026.**
+
 
