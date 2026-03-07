@@ -1,4 +1,4 @@
-# Ivory (v1.0.0)
+# Ivory (v1.0.1)
 
 **Ivory** is a Turing-complete, esoteric programming language (esolang) and Ahead-of-Time (AOT) compiler suite. Originally conceived as a romantic gesture for Valentine's Day 2026, Ivory reimagines the classic tape-memory computational model by introducing a hybrid Tape/Stack architecture, temporal constraints, and hardware entropy through a lexicon of devotion.
 
@@ -8,7 +8,7 @@ Programs in Ivory are designed to read like stream-of-consciousness prose or ava
 ## Architecture
 Ivory utilizes a **Single-pass Ahead-of-Time (AOT) Transpiler** architecture.
 
-* **Frontend**: The `ivoryc` compiler lexes `.ivy` source files. Unrecognized tokens are intentionally ignored, allowing for the inclusion of natural language comments directly within the logical flow.
+* **Frontend**: The `ivoryc` compiler lexes `.ivy` source files. Unrecognized tokens are intentionally ignored, allowing natural-language comments to be included directly within the logical flow.
 * **Intermediate Representation (IR)**: Ivory code is transpiled into a temporary C++ representation of a 64-bit Hybrid Virtual Machine. To achieve a mathematically Turing-complete, bi-directionally infinite memory tape, the VM utilizes a Sparse Memory Architecture (an O(1) dynamically allocated Hash Map), paired with an infinitely expanding LIFO stack.
 * **Backend**: The compiler forks a system process, invoking the local GCC toolchain (`g++`) to perform high-level optimizations (`-O3`) and link the IR into a standalone, native machine-code binary (ELF for Linux, PE for Windows).
 
@@ -109,5 +109,6 @@ The repository includes `poem.ivy`, a source file initially generated via a Pyth
 
 
 **Date: February 14, 2026.**
+
 
 
