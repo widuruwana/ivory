@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
     outFile << "    std::unordered_map<int, long long> tape;\n";
     outFile << "    int p = 0;\n";
     outFile << "    std::vector<long long> memories;\n";
+    outFile << "    auto next_whisper_time = std::chrono::steady_clock::now();\n";
 
     std::string word;
     // ---> Tokenization and IR Emission <---
@@ -63,8 +64,17 @@ int main(int argc, char* argv[]) {
         // ---> I/O and Control Flow <---
         // Handles standard streams and while-loop brackets.
         else if (word == "whisper") {
+            outFile << "    std::this_thread::sleep_until(next_whisper_time);\n";
             outFile << "    std::cout << static_cast<char>(tape[p]) << std::flush;\n";
-            outFile << "    std::this_thread::sleep_for(std::chrono::milliseconds(50));\n";
+            outFile << "    next_whisper_time += std::chrono::milliseconds(50);\n";
+            // Prevents burst-printing if the CPU lags severely.
+            outFile << "    {\n";
+            outFile << "        auto _now = std::chrono::steady_clock::now();\n";
+            outFile << "        if (next_whisper_time < _now){\n";
+            outFile << "            next_whisper_time = _now + std::chrono::milliseconds(50);\n";
+            outFile << "        }\n";
+            outFile << "    }\n";
+
         }
         else if (word == "listen") {
             outFile << "    char _c; std::cin.get(_c); tape[p] = _c;\n";
