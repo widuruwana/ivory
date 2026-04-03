@@ -1,5 +1,9 @@
 # Ivory (v1.1.1)
 
+<a href="https://widuruwana.github.io/ivory">
+    <img src="https://img.shields.io/badge/🌸_Try_Ivory_Online-Web_Playground-d3869b?style=flat" height="45" alt="Try Ivory Online">
+</a>
+
 **Ivory** is a Turing-complete, esoteric programming language (esolang) and Ahead-of-Time (AOT) compiler suite. Originally conceived as a romantic gesture for Valentine's Day 2026, Ivory reimagines the classic tape-memory computational model by introducing a hybrid Tape/Stack architecture, temporal constraints, and hardware entropy through a lexicon of devotion.
 
 ## Philosophy
