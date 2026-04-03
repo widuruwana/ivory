@@ -95,6 +95,15 @@
             color: var(--fg-light);
         }
 
+        #shareBtn {
+            background: transparent; color: var(--fg-muted);
+            border: 1px solid var(--border-soft); padding: 8px 16px;
+        }
+        #shareBtn:hover {
+            background: var(--border-soft);
+            color: var(--fg-light);
+        }
+
         #runBtn {
             background: var(--accent-green);
             color: var(--bg-deep);
@@ -112,10 +121,38 @@
         #stopBtn {
             background: var(--accent-red);
             color: #fbf1c7; display: none;
+            animation: pulse-red 2s infinite;
         }
         #stopBtn:hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
+        }
+
+        /* ANIMATIONS */
+        @keyframes pulse-red {
+            0% {
+                box-shadow: 0 0 0 0 rgba(251, 73, 52, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(251, 73, 52, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(251, 73, 52, 0);
+            }
+        }
+
+        @keyframes whisperFade {
+            0% {
+                opacity: 0;
+                text-shadow: 0 0 10px var(--accent-rose);
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 0 transparent;
+            }
+        }
+        .char-animate {
+            animation: whisperFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
         /* Workspace */
@@ -216,6 +253,7 @@
     <div class="header">
         <h2>Ivory <span>// Web Playground</span></h2>
         <div class="controls">
+            <button onclick="shareCode()" id="shareBtn">🔗 Share</button>
             <button onclick="toggleTheme()" id="themeBtn">☀️ Light Mode</button>
             <button onclick="stopIvory()" id="stopBtn">Halt</button>
             <button onclick="runIvory()" id="runBtn">Execute Story</button>
@@ -245,7 +283,7 @@ fade
             </div>
         </div>
 
-        <div class="pane pane-right">
+        <div class="pane pane-right" id="outContainer">
             <span class="log-msg">Terminal output will appear here. Whisper constraint is active.</span>
             <div id="output"></div>
         </div>
@@ -285,7 +323,34 @@ fade
             document.getElementById('highlights').scrollTop = document.getElementById('codeInput').scrollTop;
         }
 
-        window.onload = updateHighlights;
+        // Check URL for shared code on load
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            const sharedCode = params.get('code');
+            if (sharedCode) {
+                try {
+                    // Decode from Base64
+                    document.getElementById('codeInput').value = decodeURIComponent(atob(sharedCode));
+                } catch (e) {
+                    console.error("Could not decode shared code");
+                }
+            }
+            updateHighlights();
+        };
+
+        // Generate URL and copy to clipboard
+        function shareCode() {
+            const code = document.getElementById('codeInput').value;
+            // Encode to Base64 to make it URL-safe
+            const encoded = btoa(encodeURIComponent(code));
+            const shareUrl = window.location.origin + window.location.pathname + "?code=" + encoded;
+            
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                const btn = document.getElementById('shareBtn');
+                btn.innerText = "✅ Copied!";
+                setTimeout(() => btn.innerText = "🔗 Share", 2000);
+            });
+        }
 
         function setRunningState(isRunning) {
             executionActive = isRunning;
@@ -307,6 +372,16 @@ fade
             executionActive = false;
         }
 
+        function printAnimated(text) {
+            const out = document.getElementById('output');
+            const container = document.getElementById('outContainer');
+            const span = document.createElement('span');
+            span.textContent = text;
+            span.className = 'char-animate';
+            out.appendChild(span);
+            container.scrollTop = container.scrollHeight; // Auto-scrolls the pane
+        }
+
         async function runIvory() {
             const out = document.getElementById('output');
             const source = document.getElementById('codeInput').value;
@@ -315,7 +390,7 @@ fade
             if (tokens.length === 0 || tokens[0] === "") return;
 
             setRunningState(true);
-            out.textContent = "";
+            out.innerHTML = "";
 
             let tape = {};
             let p = 0;
@@ -360,16 +435,16 @@ fade
                 
                 else if (word === 'clear') out.textContent = "";
                 else if (word === 'breathe') await sleep(1000);
-                else if (word === 'confess') out.textContent += (tape[p] || 0) + "\n";
+                else if (word === 'confess') printAnimated((tape[p] || 0) + "\n");
                 else if (word === 'whisper') {
-                    out.textContent += String.fromCharCode(tape[p] || 0);
+                    printAnimated(String.fromCharCode(tape[p] || 0));
                     await sleep(50); 
                 }
 
                 else if (word === 'destiny') p = currentVal;
                 else if (word === 'wonder') tape[p] = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
                 else if (word === 'fade') {
-                    out.textContent += "\n\n[Execution Faded]";
+                    printAnimated("\n\n[Execution Faded]");
                     break;
                 }
                 else if (word === 'listen') {
